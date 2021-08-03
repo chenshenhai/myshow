@@ -30,6 +30,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "idraw": "^0.1.0-alpha.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "requirejs": "^2.3.6",
