@@ -14,7 +14,7 @@ export class MyShow {
   constructor(data: any, mount: HTMLDivElement) {
     this[_data] = data;
     this[_mount] = mount;
-    this[_idraw] = new iDraw(mount, {
+    this[_idraw] = new iDraw(this[_mount], {
       width: data.width,
       height: data.height,
       contextWidth: data.width,
@@ -28,7 +28,9 @@ export class MyShow {
       return;
     }
     const idrawData = this[_data].idraw;
-    this[_idraw].setData(idrawData);
+    const idraw = this[_idraw];
+    idraw.setData(idrawData);
+    idraw.scale(1);
     console.log('hello world')
     this[_hasInited] = true;
   }
