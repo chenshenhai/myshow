@@ -7,16 +7,19 @@ const fileResolve = function (file) {
 };
 
 module.exports = {
- 
+  mode: 'development',
   entry: {
-    'myshow' : fileResolve('src/myshow.ts'),
+    'iDraw' : fileResolve('src/deps/idraw.js'),
+    'React' : fileResolve('src/deps/react.js'),
+    'ReactDOM' : fileResolve('src/deps/react-dom.js'),
+    'antd' : fileResolve('src/deps/antd.js'),
   },
  
   output: {
     path: fileResolve(''),
     filename: 'dist/[name].js',
     library: {
-      name: 'MyShow',
+      name: '[name]',
       type: 'umd'
     },
   },
