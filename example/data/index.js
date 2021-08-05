@@ -5,8 +5,9 @@ import sun from './slides/sun.js';
 export default {
   width: 800,
   height: 600,
-  contextWidth: 2000,
-  contextHeight: 1500,
+  contextWidth: 16000,
+  contextHeight: 12000,
+  devicePixelRatio: 1,
   background: bg,
   slides: [
     sun,

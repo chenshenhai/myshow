@@ -21,10 +21,10 @@ export class MyShow {
     this[_idraw] = new iDraw(this[_mount], {
       width: data.width,
       height: data.height,
-      contextWidth: data.width,
-      contextHeight: data.height,
-      devicePixelRatio: 2,
-      onlyRender: true,
+      contextWidth: data.contextWidth,
+      contextHeight: data.contextHeight,
+      devicePixelRatio: data.devicePixelRatio,
+      // onlyRender: true,
     }, {
       // scrollWrapper: {
       //   use: true,
@@ -39,11 +39,12 @@ export class MyShow {
     }
     const data = this[_data];
     this[_bindEvent]();
-    this[_renderer].draw(data);
+    this[_renderer].drawPreview(data);
     this[_hasInited] = true;
   }
 
   private [_bindEvent]() {
     if (this[_hasInited] === true) return;
+    // const idraw = this[_idraw];
   }
 };

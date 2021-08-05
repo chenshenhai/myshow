@@ -11,7 +11,7 @@ export default {
       type: "text",
       desc: {
         text: 'Solar System',
-        color: "#f0f0f0",
+        color: "#080e247a",
         fontSize: 40,
         textAlign: 'center',
       },

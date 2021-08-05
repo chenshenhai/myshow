@@ -5,11 +5,18 @@ export type TypeShowLayer = {
   elements: TypeData['elements'],
 }
 
+export type TypeShowSlide = TypeShowLayer & {
+  name: string;
+  x: number,
+  y: number,
+}
+
 export type TypeShowData = {
   width: number,
   height: number,
   contextWidth: number,
   contextHeight: number,
+  devicePixelRatio: number,
   background: TypeShowLayer,
-  slides: TypeShowLayer
+  slides: TypeShowSlide[]
 }
