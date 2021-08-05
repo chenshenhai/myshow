@@ -20,6 +20,10 @@ export class MyShow {
       contextWidth: data.width,
       contextHeight: data.height,
       devicePixelRatio: 2,
+    }, {
+      // scrollWrapper: {
+      //   use: true,
+      // }
     })
   }
 
@@ -30,7 +34,8 @@ export class MyShow {
     const idrawData = this[_data].idraw;
     const idraw = this[_idraw];
     idraw.setData(idrawData);
-    idraw.scale(1);
+    // idraw.scale(1);
+    // idraw.scrollX(-400)
     console.log('hello world')
     this[_hasInited] = true;
   }
