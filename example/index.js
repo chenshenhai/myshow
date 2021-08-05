@@ -1,4 +1,4 @@
-import data from './data.js';
+import data from './data/index.js';
 
 const { MyShow } = window.MyShow;
 const mount = document.querySelector('#app');

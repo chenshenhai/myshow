@@ -20,6 +20,7 @@ export class MyShow {
       contextWidth: data.width,
       contextHeight: data.height,
       devicePixelRatio: 2,
+      onlyRender: true,
     }, {
       // scrollWrapper: {
       //   use: true,
@@ -31,12 +32,17 @@ export class MyShow {
     if (this[_hasInited]) {
       return;
     }
-    const idrawData = this[_data].idraw;
-    const idraw = this[_idraw];
-    idraw.setData(idrawData);
-    // idraw.scale(1);
-    // idraw.scrollX(-400)
+    this.drawBackground();
     console.log('hello world')
     this[_hasInited] = true;
+  }
+
+  drawBackground() {
+    const data = this[_data];
+    const idraw = this[_idraw];
+    console.log('data ===', data);
+    idraw.setData({
+      elements: data.background.elements
+    });
   }
 };
