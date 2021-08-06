@@ -49,7 +49,7 @@ class Renderer {
       data.elements.push(elem);
     });
     idraw.setData(data);
-    idraw.scale(showData.width/showData.contextWidth)
+    idraw.scale(showData.width / showData.contextWidth)
   }
 
   private _drawBackground(data: any) {

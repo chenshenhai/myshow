@@ -24,6 +24,7 @@ export class MyShow {
       contextWidth: data.contextWidth,
       contextHeight: data.contextHeight,
       devicePixelRatio: data.devicePixelRatio,
+      maxRecords: 1,
       // onlyRender: true,
     }, {
       // scrollWrapper: {

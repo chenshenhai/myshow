@@ -5,14 +5,14 @@ export default {
       name: "bg",
       x: 0,
       y: 0,
-      w: 16000,
-      h: 12000,
+      w: 1600,
+      h: 1200,
       angle: 0,
       type: "html",
-      // lock: true,
+      lock: true,
       desc: {
-        width: 860,
-        height: 640,
+        width: 800,
+        height: 600,
         html: `<style>
         .solar-system {
           position: relative;
