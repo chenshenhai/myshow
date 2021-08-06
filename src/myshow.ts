@@ -1,6 +1,9 @@
 import iDraw from 'idraw';
 import Renderer from './lib/renderer';
+import { TypeMyShowOptions, TypeShowData, TypeShowLayout } from './types/index';
 
+
+const _opts = Symbol('_opts');
 const _data = Symbol('_data');
 const _mount = Symbol('_mount');
 const _hasInited = Symbol('_hasInited');
@@ -8,22 +11,28 @@ const _idraw = Symbol('_idraw');
 const _renderer = Symbol('_renderer');
 const _bindEvent = Symbol('_bindEvent');
 
+
 export class MyShow {
-  private [_data]: any;
+  private [_data]: TypeShowData;
+  private [_opts]: TypeMyShowOptions;
   private [_mount]: HTMLDivElement;
   private [_hasInited]: boolean = false;
   private [_idraw]: iDraw;
-  private [_renderer]: Renderer
+  private [_renderer]: Renderer;
 
-  constructor(data: any, mount: HTMLDivElement) {
-    this[_data] = data;
+  constructor(mount: HTMLDivElement, opts: TypeMyShowOptions) {
+    this[_opts] = opts;
     this[_mount] = mount;
+    this[_data] = {
+      slides: []
+    }
+    const layout = this[_opts].layout;
     this[_idraw] = new iDraw(this[_mount], {
-      width: data.width,
-      height: data.height,
-      contextWidth: data.contextWidth,
-      contextHeight: data.contextHeight,
-      devicePixelRatio: data.devicePixelRatio,
+      width: layout.width,
+      height: layout.height,
+      contextWidth: layout.contextWidth,
+      contextHeight: layout.contextHeight,
+      devicePixelRatio: opts.devicePixelRatio,
       maxRecords: 1,
       // onlyRender: true,
     }, {
@@ -34,13 +43,18 @@ export class MyShow {
     this[_renderer] = new Renderer({ idraw: this[_idraw] })
   }
 
+  setData(data: TypeShowData) {
+    this[_data] = data;
+  }
+
   start() {
     if (this[_hasInited]) {
       return;
     }
     const data = this[_data];
+    const layout = this[_opts].layout;
     this[_bindEvent]();
-    this[_renderer].drawPreview(data);
+    this[_renderer].drawPreview(layout, data);
     this[_hasInited] = true;
   }
 

@@ -1,6 +1,6 @@
 import iDraw from 'idraw';
-import { TypeDataBase, TypeElement, TypeElemType } from '@idraw/types';
-import { TypeShowData } from './../types/index';
+import { TypeShowData, TypeShowLayout } from './../types/index';
+import { TypeDataBase, TypeElemType } from '@idraw/types';
 
 type Options = {
   idraw: iDraw,
@@ -24,17 +24,23 @@ class Renderer {
     // TODO
   }
 
-  drawPreview(showData: TypeShowData) {
+  drawPreview(layout: TypeShowLayout, showData: TypeShowData) {
     const idraw = this._idraw;
-    const data: TypeDataBase = { elements: [] }
-    showData.background.elements.forEach((elem) => {
-      data.elements.push(elem);
+    const idrawData: TypeDataBase = { elements: [] };
+    layout.background.elements.forEach((elem) => {
+      idrawData.elements.push(elem);
     });
-    showData.slides.forEach((slide) => {
+
+    for (let i = 0; i < layout.slots.length; i ++) {
+      if (i >= showData.slides.length) {
+        break;
+      }
+      const slot = layout.slots[i];
+      const slide = showData.slides[i];
       const elem = {
         name: slide.name,
-        x: slide.x,
-        y: slide.y,
+        x: slot.x,
+        y: slot.y,
         w: 300,
         h: 100,
         angle: 0,
@@ -46,10 +52,10 @@ class Renderer {
           textAlign: 'center',
         },
       };
-      data.elements.push(elem);
-    });
-    idraw.setData(data);
-    idraw.scale(showData.width / showData.contextWidth)
+      idrawData.elements.push(elem);
+    }
+    idraw.setData(idrawData);
+    idraw.scale(layout.width / layout.contextWidth)
   }
 
   private _drawBackground(data: any) {

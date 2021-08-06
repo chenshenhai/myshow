@@ -1,22 +1,31 @@
-import { TypeData } from '@idraw/types';
+import { TypeData, TypeDataBase } from '@idraw/types';
 
-export type TypeShowLayer = {
-  showType: 'background' | 'slide'
-  elements: TypeData['elements'],
+export type TypeShowContent = {
+  elements: TypeData['elements'] | TypeDataBase['elements']
 }
 
-export type TypeShowSlide = TypeShowLayer & {
-  name: string;
+export type TypeShowSlot = {
   x: number,
   y: number,
+  w: number,
+  h: number
+}
+
+export type TypeShowLayout = {
+  name: string,
+  width: number;
+  height: number;
+  contextWidth: number;
+  contextHeight: number;
+  background: TypeShowContent,
+  slots: TypeShowSlot[]
+}
+
+export type TypeShowSlide = {
+  name: string,
+  content: TypeShowContent,
 }
 
 export type TypeShowData = {
-  width: number,
-  height: number,
-  contextWidth: number,
-  contextHeight: number,
-  devicePixelRatio: number,
-  background: TypeShowLayer,
   slides: TypeShowSlide[]
 }
