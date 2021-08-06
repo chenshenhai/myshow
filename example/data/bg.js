@@ -2,45 +2,17 @@ export default {
   showType: 'background',
   elements: [
     {
-      name: "text",
-      x: 10,
-      y: 10,
-      w: 300,
-      h: 100,
-      angle: 0,
-      type: "text",
-      desc: {
-        text: 'Solar System',
-        color: "#080e247a",
-        fontSize: 40,
-        textAlign: 'center',
-      },
-    },
-    {
-      name: "text",
-      x: 10,
-      y: 10,
-      w: 300,
-      h: 100,
-      angle: 0,
-      type: "text",
-      desc: {
-        text: 'Solar System',
-        color: "#f0f0f0",
-        fontSize: 40,
-        textAlign: 'center',
-      },
-    },
-    {
       name: "bg",
       x: 0,
       y: 0,
-      w: 860,
-      h: 640,
+      w: 16000,
+      h: 12000,
       angle: 0,
       type: "html",
-      lock: true,
+      // lock: true,
       desc: {
+        width: 860,
+        height: 640,
         html: `<style>
         .solar-system {
           position: relative;
@@ -274,6 +246,21 @@ export default {
           </div>
         </div>
       </div>`
+      },
+    },
+    {
+      name: "text",
+      x: 10,
+      y: 10,
+      w: 300,
+      h: 100,
+      angle: 0,
+      type: "text",
+      desc: {
+        text: 'Solar System',
+        color: "#f0f0f0",
+        fontSize: 40,
+        textAlign: 'center',
       },
     },
   ]

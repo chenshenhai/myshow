@@ -1,5 +1,5 @@
 import iDraw from 'idraw';
-import { TypeData, TypeElement } from '@idraw/types';
+import { TypeDataBase, TypeElement, TypeElemType } from '@idraw/types';
 import { TypeShowData } from './../types/index';
 
 type Options = {
@@ -26,9 +26,9 @@ class Renderer {
 
   drawPreview(showData: TypeShowData) {
     const idraw = this._idraw;
-    const data: TypeData = { elements: [] }
+    const data: TypeDataBase = { elements: [] }
     showData.background.elements.forEach((elem) => {
-      data.elements.unshift(elem);
+      data.elements.push(elem);
     });
     showData.slides.forEach((slide) => {
       const elem = {
@@ -38,18 +38,18 @@ class Renderer {
         w: 100,
         h: 100,
         angle: 0,
-        type: 'text', 
+        type: 'text' as TypeElemType, 
         desc: {
           text: slide.name,
           color: "#f0f0f0",
           fontSize: 40,
           textAlign: 'center',
         },
-      } as TypeElement<'text'>
-      data.elements.unshift(elem);
+      };
+      data.elements.push(elem);
     });
-    console.log(data);
     idraw.setData(data);
+    idraw.scale(showData.width/showData.contextWidth)
   }
 
   private _drawBackground(data: any) {
