@@ -17,7 +17,7 @@ export default {
       },
     },
     {
-      name: "image",
+      name: "text",
       x: 10,
       y: 10,
       w: 300,

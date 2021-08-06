@@ -1,7 +1,7 @@
 export default {
   showType: 'slide',
   name: 'Earth',
-  x: 4000,
-  y: 3000,
+  x: 100,
+  y: 100,
   elements: []
 }
