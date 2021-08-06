@@ -1,11 +1,11 @@
 export default {
   showType: 'slide',
-  name: 'Sun',
-  x: 0,
-  y: 0,
+  name: 'Sun 太阳',
+  x: 870,
+  y: 652,
   elements: [
     {
-      name: "name",
+      name: "Sun 太阳",
       x: 8000,
       y: 6000,
       w: 1000,
@@ -13,7 +13,7 @@ export default {
       angle: 0,
       type: "text",
       desc: {
-        text: 'Star: Sun',
+        text: 'Sun 太阳',
         color: "#080e247a",
         fontSize: 40,
         textAlign: 'center',

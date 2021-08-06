@@ -1,6 +1,16 @@
 import bg from './bg.js';
-import earth from './slides/earth.js';
+
 import sun from './slides/sun.js';
+import mercury from './slides/mercury.js';
+import venus from './slides/venus.js';
+import earth from './slides/earth.js';
+import mars from './slides/mars.js';
+import asteroidsMeteorids from './slides/asteroids-meteorids.js';
+import jupiter from './slides/jupiter.js';
+import saturn from './slides/saturn.js';
+import uranus from './slides/uranus.js';
+import neptune from './slides/neptune.js';
+import pluto from './slides/pluto.js';
 
 export default {
   width: 800,
@@ -11,6 +21,15 @@ export default {
   background: bg,
   slides: [
     sun,
+    mercury,
+    venus,
     earth,
+    mars,
+    asteroidsMeteorids,
+    jupiter,
+    saturn,
+    uranus,
+    neptune,
+    pluto,
   ]
 }

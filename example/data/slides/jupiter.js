@@ -1,11 +1,11 @@
 export default {
   showType: 'slide',
-  name: 'Earth 地球',
-  x: 742,
-  y: 432,
+  name: 'Jupiter 木星',
+  x: 460,
+  y: 346, 
   elements: [
     {
-      name: "title",
+      name: "Jupiter",
       x: 8000,
       y: 6000,
       w: 1000,
@@ -13,7 +13,7 @@ export default {
       angle: 0,
       type: "text",
       desc: {
-        text: 'Earth 地球',
+        text: 'Jupiter 木星',
         color: "#080e247a",
         fontSize: 40,
         textAlign: 'center',

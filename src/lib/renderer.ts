@@ -35,7 +35,7 @@ class Renderer {
         name: slide.name,
         x: slide.x,
         y: slide.y,
-        w: 100,
+        w: 300,
         h: 100,
         angle: 0,
         type: 'text' as TypeElemType, 

@@ -1,8 +1,8 @@
 export default {
   showType: 'slide',
-  name: 'Earth 地球',
-  x: 742,
-  y: 432,
+  name: 'Mercury 金星',
+  x: 908,
+  y: 500,
   elements: [
     {
       name: "title",
@@ -13,7 +13,7 @@ export default {
       angle: 0,
       type: "text",
       desc: {
-        text: 'Earth 地球',
+        text: 'Mercury 金星',
         color: "#080e247a",
         fontSize: 40,
         textAlign: 'center',
