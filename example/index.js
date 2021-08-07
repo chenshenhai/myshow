@@ -5,7 +5,7 @@ const { MyShow } = window.MyShow;
 const mount = document.querySelector('#app');
 const myshow = new MyShow(mount, {
   layout,
-  devicePixelRatio: 2,
+  devicePixelRatio: 4,
 });
 myshow.setData(data);
 myshow.start();

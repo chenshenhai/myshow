@@ -25,19 +25,35 @@ class Player {
     const idraw = this._idraw;
     const slot = layout.slots[index];
     const slide = showData.slides[index];
-    const scale = slot.w / layout.contextHeight;
+    const scale = layout.contextHeight / slot.w;
 
-    const startX = 0;
-    const startY = 0;
-    const endX = slot.x;
-    const endY = slot.y;
-    console.log('scale ===', scale);
+    const interval = 16;
+    const time = 800;
+    const actionCount = Math.ceil(time / interval);
+    const scaleUnit = (scale - 1) / actionCount;
+
+    const startTop = 0;
+    const startLeft = 0;
+    const endTop = slot.y * scale;
+    const endLeft = slot.x * scale;
+    const actionTopUnit = (endTop - startTop) / actionCount;
+    const actionLeftUnit = (endLeft - startLeft) / actionCount;
+
+
+    console.log('scaleUnit ==', scaleUnit);
 
     const action = createAnimationAction({
-      time: 1000,
-      interval: 20,
+      time,
+      interval,
       onAction(index) {
-        console.log('action =', index);
+        const actionScale = 1 + (scaleUnit * (index + 1));
+        idraw.scale(actionScale);
+
+        const actionTop = startTop + (actionTopUnit * (index + 1));
+        idraw.scrollTop(actionTop);
+
+        const actionLeft = startLeft + (actionLeftUnit * (index + 1));
+        idraw.scrollLeft(actionLeft);
       },
       onComplete() {
         console.log('onComplete!');
