@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@idraw/types": "^0.1.1",
+    "@idraw/util": "^0.1.1",
     "antd": "^4.16.10",
     "idraw": "^0.1.1",
     "react": "^17.0.2",

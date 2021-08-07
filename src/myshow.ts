@@ -1,29 +1,31 @@
 import iDraw from 'idraw';
 import Renderer from './lib/renderer';
 import { TypeMyShowOptions, TypeShowData, TypeShowLayout } from './types/index';
-
+import Player from './lib/player';
 
 const _opts = Symbol('_opts');
-const _data = Symbol('_data');
+const _showData = Symbol('_showData');
 const _mount = Symbol('_mount');
 const _hasInited = Symbol('_hasInited');
 const _idraw = Symbol('_idraw');
 const _renderer = Symbol('_renderer');
+const _player = Symbol('_player');
 const _bindEvent = Symbol('_bindEvent');
 
 
 export class MyShow {
-  private [_data]: TypeShowData;
+  private [_showData]: TypeShowData;
   private [_opts]: TypeMyShowOptions;
   private [_mount]: HTMLDivElement;
   private [_hasInited]: boolean = false;
   private [_idraw]: iDraw;
   private [_renderer]: Renderer;
+  private [_player]: Player;
 
   constructor(mount: HTMLDivElement, opts: TypeMyShowOptions) {
     this[_opts] = opts;
     this[_mount] = mount;
-    this[_data] = {
+    this[_showData] = {
       slides: []
     }
     const layout = this[_opts].layout;
@@ -40,22 +42,27 @@ export class MyShow {
       //   use: true,
       // }
     });
-    this[_renderer] = new Renderer({ idraw: this[_idraw] })
+    this[_renderer] = new Renderer({ idraw: this[_idraw] });
+    this[_player] = new Player({ idraw: this[_idraw] })
   }
 
   setData(data: TypeShowData) {
-    this[_data] = data;
+    this[_showData] = data;
   }
 
   start() {
     if (this[_hasInited]) {
       return;
     }
-    const data = this[_data];
+    const data = this[_showData];
     const layout = this[_opts].layout;
     this[_bindEvent]();
     this[_renderer].drawPreview(layout, data);
     this[_hasInited] = true;
+  }
+
+  play() {
+    this[_player].play(0, this[_opts].layout, this[_showData]);
   }
 
   private [_bindEvent]() {

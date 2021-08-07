@@ -9,3 +9,5 @@ const myshow = new MyShow(mount, {
 });
 myshow.setData(data);
 myshow.start();
+
+myshow.play();
