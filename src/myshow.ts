@@ -61,8 +61,8 @@ export class MyShow {
     this[_hasInited] = true;
   }
 
-  play() {
-    this[_player].play(0, this[_opts].layout, this[_showData]);
+  playToSlide(index: number) {
+    this[_player].playToSlide(index, this[_opts].layout, this[_showData]);
   }
 
   private [_bindEvent]() {

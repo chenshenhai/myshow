@@ -17,7 +17,7 @@ class Player {
     this._idraw = opts.idraw;
   }
 
-  play(index: number = 0, layout: TypeShowLayout, showData: TypeShowData) {
+  playToSlide(index: number = 0, layout: TypeShowLayout, showData: TypeShowData) {
     if (this._status !== 'free') {
       return;
     }
@@ -38,9 +38,6 @@ class Player {
     const endLeft = slot.x * scale;
     const actionTopUnit = (endTop - startTop) / actionCount;
     const actionLeftUnit = (endLeft - startLeft) / actionCount;
-
-
-    console.log('scaleUnit ==', scaleUnit);
 
     const action = createAnimationAction({
       time,
