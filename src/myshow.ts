@@ -36,7 +36,7 @@ export class MyShow {
       contextHeight: layout.contextHeight,
       devicePixelRatio: opts.devicePixelRatio,
       maxRecords: 1,
-      // onlyRender: true,
+      onlyRender: true,
     }, {
       // scrollWrapper: {
       //   use: true,
@@ -61,9 +61,14 @@ export class MyShow {
     this[_hasInited] = true;
   }
 
-  playToSlide(index: number) {
-    this[_player].playToSlide(index, this[_opts].layout, this[_showData]);
+  async playToSlide(index: number) {
+    await this[_player].playToSlide(index, this[_opts].layout, this[_showData]);
   }
+
+  async playToStart() {
+    await this[_player].playToStart(this[_opts].layout);
+  }
+
 
   private [_bindEvent]() {
     if (this[_hasInited] === true) return;

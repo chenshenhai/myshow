@@ -41,8 +41,8 @@ class Renderer {
         name: slide.name,
         x: slot.x,
         y: slot.y,
-        w: 300,
-        h: 100,
+        w: 300, // TODO
+        h: 100, // TODO
         angle: 0,
         type: 'text' as TypeElemType, 
         desc: {

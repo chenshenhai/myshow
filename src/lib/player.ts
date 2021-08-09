@@ -17,33 +17,34 @@ class Player {
     this._idraw = opts.idraw;
   }
 
-  playToSlide(index: number = 0, layout: TypeShowLayout, showData: TypeShowData) {
+  playAction(opts: {
+    startScale: number, endScale: number,
+    startTop: number, endTop: number,
+    startLeft: number, endLeft: number,
+    interval: number,
+    time: number,
+  }): Promise<void> {
+
     if (this._status !== 'free') {
-      return;
+      return Promise.resolve();
     }
     this._status = 'busy';
     const idraw = this._idraw;
-    const slot = layout.slots[index];
-    const slide = showData.slides[index];
-    const scale = layout.contextHeight / slot.w;
-
-    const interval = 16;
-    const time = 800;
+    const {
+      startScale, endScale, startTop, endTop, startLeft, endLeft,
+      interval, time,
+    } = opts;
+    
     const actionCount = Math.ceil(time / interval);
-    const scaleUnit = (scale - 1) / actionCount;
-
-    const startTop = 0;
-    const startLeft = 0;
-    const endTop = slot.y * scale;
-    const endLeft = slot.x * scale;
+    const scaleUnit = (endScale - startScale) / actionCount;
     const actionTopUnit = (endTop - startTop) / actionCount;
     const actionLeftUnit = (endLeft - startLeft) / actionCount;
 
     const action = createAnimationAction({
       time,
       interval,
-      onAction(index) {
-        const actionScale = 1 + (scaleUnit * (index + 1));
+      onAction: (index) => {
+        const actionScale = startScale + (scaleUnit * (index + 1));
         idraw.scale(actionScale);
 
         const actionTop = startTop + (actionTopUnit * (index + 1));
@@ -52,14 +53,42 @@ class Player {
         const actionLeft = startLeft + (actionLeftUnit * (index + 1));
         idraw.scrollLeft(actionLeft);
       },
-      onComplete() {
-        console.log('onComplete!');
+      onComplete: () => {
+        this._status = 'free';
       }
     });
-    action.then(() => {
-      console.log('action.then');
-    }).catch(() => {
-      console.log('action.catch');
+    return action;
+  }
+
+
+
+  playToSlide(index: number = 0, layout: TypeShowLayout, showData: TypeShowData): Promise<void> {
+    const slot = layout.slots[index];
+    const endScale = layout.contextHeight / slot.w;
+    return this.playAction({
+      startScale: layout.width / layout.contextWidth,
+      endScale: endScale,
+      startTop: 0,
+      endTop: slot.y * endScale,
+      startLeft: 0,
+      endLeft: slot.x * endScale,
+      interval: 16,
+      time: 800,
+    })
+  }
+
+  playToStart(layout: TypeShowLayout) {
+    const { scale, scrollTop, scrollLeft } = this._idraw.getScreenTransform();
+    // const endScale = layout.contextHeight / layout.width;
+    return this.playAction({
+      startScale: scale,
+      endScale: layout.width / layout.contextWidth,
+      startTop: scrollTop,
+      endTop: 0,
+      startLeft: scrollLeft,
+      endLeft: 0,
+      interval: 16,
+      time: 800,
     })
   }
 }
