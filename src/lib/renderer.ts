@@ -1,6 +1,7 @@
 import iDraw from 'idraw';
-import { TypeShowData, TypeShowLayout } from './../types/index';
-import { TypeDataBase, TypeElemType } from '@idraw/types';
+import util from '@idraw/util';
+import { TypeShowData, TypeShowLayout, TypeShowSlide } from './../types/index';
+import { TypeDataBase, TypeData, TypeElemType } from '@idraw/types';
 
 type Options = {
   idraw: iDraw,
@@ -8,9 +9,16 @@ type Options = {
 
 class Renderer {
   private _idraw: iDraw;
+  private _elemForSlideMap: {
+    [uuid: string]: {
+      index: number,
+      slide: TypeShowSlide
+    }
+  }
 
   constructor(opts: Options) {
     this._idraw = opts.idraw;
+    this._elemForSlideMap = {}
   }
 
   clear() {
@@ -26,19 +34,42 @@ class Renderer {
 
   drawPreview(layout: TypeShowLayout, showData: TypeShowData) {
     const idraw = this._idraw;
-    const idrawData: TypeDataBase = { elements: [] };
+    const idrawData: TypeData = this._createPreivewIDrawData(layout, showData);
+    idraw.setData(idrawData);
+    idraw.scale(layout.width / layout.contextWidth)
+  }
+
+  getSlideIndexByElementUUID(uuid: string): number | null {
+    const item = this._elemForSlideMap[uuid];
+    if (item && item.index >= 0) {
+      return item.index;
+    } else {
+      return null;
+    }
+  }
+
+  private _createPreivewIDrawData(layout: TypeShowLayout, showData: TypeShowData): TypeData {
+    const idrawData: TypeData = { elements: [] };
+    const elemForSlideMap: {
+      [uuid: string]: {
+        index: number,
+        slide: TypeShowSlide
+      }
+    } = {}
     layout.background.elements.forEach((elem) => {
-      idrawData.elements.push(elem);
+      idrawData.elements.push({...elem, ...{ uuid: util.uuid.createUUID()}});
     });
 
     for (let i = 0; i < layout.slots.length; i ++) {
       if (i >= showData.slides.length) {
         break;
       }
+      const uuid = util.uuid.createUUID();
       const slot = layout.slots[i];
       const slide = showData.slides[i];
       const elem = {
         name: slide.name,
+        uuid,
         x: slot.x,
         y: slot.y,
         w: 300, // TODO
@@ -53,9 +84,13 @@ class Renderer {
         },
       };
       idrawData.elements.push(elem);
+      elemForSlideMap[uuid] = {
+        index: i,
+        slide,
+      }
     }
-    idraw.setData(idrawData);
-    idraw.scale(layout.width / layout.contextWidth)
+    this._elemForSlideMap = elemForSlideMap;
+    return idrawData;
   }
 
   private _drawBackground(data: any) {

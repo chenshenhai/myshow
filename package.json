@@ -34,10 +34,10 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@idraw/types": "0.1.2",
-    "@idraw/util": "0.1.2",
+    "@idraw/types": "0.1.3",
+    "@idraw/util": "0.1.3",
     "antd": "^4.16.10",
-    "idraw": "0.1.2",
+    "idraw": "0.1.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "requirejs": "^2.3.6",

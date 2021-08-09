@@ -1,4 +1,5 @@
 import iDraw from 'idraw';
+import { TypeElement, TypeElemDesc } from '@idraw/types';
 import uitl from '@idraw/util';
 import Renderer from './lib/renderer';
 import { TypeMyShowOptions, TypeShowData, TypeShowLayout } from './types/index';
@@ -77,8 +78,13 @@ export class MyShow {
   private [_bindEvent]() {
     if (this[_hasInited] === true) return;
     const idraw = this[_idraw];
-    idraw.on('mouseOverElement', (data) => {
-      console.log('data ====', data);
+    idraw.on('screenClickElement', async (data: { uuid: string | null, index: number | null, element: TypeElement<keyof TypeElemDesc> }) => {
+      if (data.uuid) {
+        const index = this[_renderer].getSlideIndexByElementUUID(data.uuid);
+        if (index !== null) {
+          this.playToSlide(index);
+        }
+      }
     })
   }
 };
