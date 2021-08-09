@@ -1,4 +1,5 @@
 import iDraw from 'idraw';
+import util from '@idraw/util';
 import { TypeDataBase, TypeElemType } from '@idraw/types';
 import { TypeShowData, TypeShowLayout } from './../types/index';
 import { createAnimationAction } from './../util/animate';
@@ -24,7 +25,6 @@ class Player {
     interval: number,
     time: number,
   }): Promise<void> {
-
     if (this._status !== 'free') {
       return Promise.resolve();
     }
@@ -60,8 +60,6 @@ class Player {
     return action;
   }
 
-
-
   playToSlide(index: number = 0, layout: TypeShowLayout, showData: TypeShowData): Promise<void> {
     const slot = layout.slots[index];
     const endScale = layout.contextHeight / slot.w;
@@ -79,7 +77,6 @@ class Player {
 
   playToStart(layout: TypeShowLayout) {
     const { scale, scrollTop, scrollLeft } = this._idraw.getScreenTransform();
-    // const endScale = layout.contextHeight / layout.width;
     return this.playAction({
       startScale: scale,
       endScale: layout.width / layout.contextWidth,
@@ -89,6 +86,30 @@ class Player {
       endLeft: 0,
       interval: 16,
       time: 800,
+    })
+  }
+
+  playAll(layout: TypeShowLayout, showData: TypeShowData) : Promise<void> {
+    if (this._status !== 'free') {
+      return Promise.resolve();
+    }
+    const middlewares = [];
+    for (let i = 0; i < showData.slides.length; i ++) {
+      middlewares.push(async (ctx: any, next: Function) => {
+        await util.time.delay(1000); // TODO
+        await this.playToSlide(i, layout, showData);
+        await util.time.delay(2000); // TODO
+        await this.playToStart(layout);
+        await next();
+      })
+    }
+    const task = util.time.compose(middlewares);
+    return new Promise((resolve, reject) => {
+      task({}).then(() => {
+        resolve();
+      }).catch((err: any) => {
+        reject(err)
+      });
     })
   }
 }

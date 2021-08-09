@@ -1,4 +1,5 @@
 import iDraw from 'idraw';
+import uitl from '@idraw/util';
 import Renderer from './lib/renderer';
 import { TypeMyShowOptions, TypeShowData, TypeShowLayout } from './types/index';
 import Player from './lib/player';
@@ -69,6 +70,9 @@ export class MyShow {
     await this[_player].playToStart(this[_opts].layout);
   }
 
+  async play() {
+    await this[_player].playAll(this[_opts].layout, this[_showData]);
+  }
 
   private [_bindEvent]() {
     if (this[_hasInited] === true) return;

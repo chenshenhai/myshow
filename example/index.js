@@ -17,9 +17,10 @@ async function main() {
   myshow.setData(data);
   myshow.start();
   
-  await myshow.playToSlide(1);
-  await delay(800);
-  await myshow.playToStart();
+  // await myshow.playToSlide(1);
+  // await delay(800);
+  // await myshow.playToStart();
+  await myshow.play();
 }
 
 main();
