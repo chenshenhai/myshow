@@ -1,18 +1,11 @@
 import iDraw from 'idraw';
 import { TypeElement, TypeElemDesc } from '@idraw/types';
-import uitl from '@idraw/util';
 import Renderer from './lib/renderer';
 import { TypeMyShowOptions, TypeShowData, TypeShowLayout } from './types/index';
 import Player from './lib/player';
-
-const _opts = Symbol('_opts');
-const _showData = Symbol('_showData');
-const _mount = Symbol('_mount');
-const _hasInited = Symbol('_hasInited');
-const _idraw = Symbol('_idraw');
-const _renderer = Symbol('_renderer');
-const _player = Symbol('_player');
-const _bindEvent = Symbol('_bindEvent');
+import { TempData } from './lib/temp';
+import { _opts, _showData, _mount, _hasInited, _idraw, _renderer,
+  _player, _bindEvent, _tempData,} from './names';
 
 
 export class MyShow {
@@ -23,9 +16,11 @@ export class MyShow {
   private [_idraw]: iDraw;
   private [_renderer]: Renderer;
   private [_player]: Player;
+  private [_tempData]: TempData;
 
   constructor(mount: HTMLDivElement, opts: TypeMyShowOptions) {
     this[_opts] = opts;
+    this[_tempData] = new TempData();
     this[_mount] = mount;
     this[_showData] = {
       slides: []
@@ -82,7 +77,14 @@ export class MyShow {
       if (data.uuid) {
         const index = this[_renderer].getSlideIndexByElementUUID(data.uuid);
         if (index !== null) {
-          this.playToSlide(index);
+          const activeIndex = this[_tempData].get('activeSlideIndex');
+          if (activeIndex === null) {
+            this.playToSlide(index);
+            this[_tempData].set('activeSlideIndex', index);
+          } else if (activeIndex === index) {
+            this.playToStart();
+            this[_tempData].set('activeSlideIndex', null);
+          }
         }
       }
     })
