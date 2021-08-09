@@ -77,8 +77,8 @@ export class MyShow {
   private [_bindEvent]() {
     if (this[_hasInited] === true) return;
     const idraw = this[_idraw];
-    idraw.on('changeData', (data) => {
-      // console.log('data ====', data);
+    idraw.on('mouseOverElement', (data) => {
+      console.log('data ====', data);
     })
   }
 };

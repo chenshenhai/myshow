@@ -20,7 +20,7 @@ async function main() {
   // await myshow.playToSlide(1);
   // await delay(800);
   // await myshow.playToStart();
-  await myshow.play();
+  // await myshow.play();
 }
 
 main();
