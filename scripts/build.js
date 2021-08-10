@@ -18,5 +18,7 @@ const prodConfig = {
 
 module.exports = [
   merge(depsConfig, prodConfig),
-  merge(config, prodConfig)
+  ...config.map((conf) => {
+    return merge(conf, prodConfig)
+  })
 ]

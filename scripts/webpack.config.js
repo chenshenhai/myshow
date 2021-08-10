@@ -2,64 +2,37 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 const buildConfig = require('./build-config');
+const { createWebpackConfig } = require('./common');
 
 const fileResolve = function (file) {
   return path.join(__dirname, '..', file);
 };
 
-module.exports = {
- 
-  entry: {
-    'myshow' : fileResolve('src/myshow/index.ts'),
-    'bin' : fileResolve('src/bin/index.ts'),
-  },
- 
-  output: {
-    path: fileResolve(''),
-    filename: 'dist/[name].js',
-    library: {
-      name: 'MyShow',
-      type: 'umd'
+module.exports = [
+  createWebpackConfig({
+    entry: {
+      'myshow' : fileResolve('src/myshow/index.ts'),
     },
-  },
-  module: { 
-    rules: [ 
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
+    output: {
+      path: fileResolve(''),
+      filename: 'dist/[name].js',
+      library: {
+        name: 'MyShow',
+        type: 'umd'
       },
-      {
-        test: /\.(js|jsx)$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              '@babel/preset-env',
-              '@babel/preset-react'
-            ],
-            'plugins': []
-          }
-        }
+    },
+  }),
+  createWebpackConfig({
+    entry: {
+      'bin' : fileResolve('src/bin/index.ts'),
+    },
+    output: {
+      path: fileResolve(''),
+      filename: 'dist/[name].js',
+      library: {
+        type: 'commonjs'
       },
-      {
-        test: /\.(css|less)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'less-loader'
-        ]
-      }
-    ]
-  },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-  externals: buildConfig.deps,
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'dist/[name].css'
-    }),
-    new NodePolyfillPlugin(),
-  ],
-}
+    },
+  })
+]
+
