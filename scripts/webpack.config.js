@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 const buildConfig = require('./build-config');
 
 const fileResolve = function (file) {
@@ -10,6 +11,7 @@ module.exports = {
  
   entry: {
     'myshow' : fileResolve('src/myshow/index.ts'),
+    'bin' : fileResolve('src/bin/index.ts'),
   },
  
   output: {
@@ -57,6 +59,7 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'dist/[name].css'
-    })
+    }),
+    new NodePolyfillPlugin(),
   ],
 }
