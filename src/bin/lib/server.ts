@@ -1,7 +1,8 @@
-import process from 'process';
+import path from 'path';
 import { Server } from 'net';
 import Koa from 'koa';
 import Router from '@koa/router';
+import KoaStatic from 'koa-static';
 import { TypeShowServer, TypeServerOpts, TypeServerStatus, } from './../types';
 
 export class ShowServer implements TypeShowServer {
@@ -56,11 +57,14 @@ export class ShowServer implements TypeShowServer {
     if (this._status === TypeServerStatus.HAS_INITED) {
       return Promise.resolve();
     }
+    const { projectDir, binModuleDir } = this._opts;
     const server = this._serverApp;
     // const apiHandler = this._opts.apiHandler;
 
     return new Promise((resolve) => {
       const router = new Router();
+
+      server.use(KoaStatic(path.join()))
 
       router.get('/', async (ctx, next) => {
         ctx.body = '<h1>Server!</h1>';

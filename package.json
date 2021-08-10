@@ -13,7 +13,7 @@
     "dev:src": "webpack --watch -c ./scripts/dev.js",
     "dev:build-deps": "webpack -c ./scripts/deps.js",
     "build": "webpack -c ./scripts/build.js",
-    "dev:bin": "nodemon ./bin/index.js dev ./example/project/"
+    "dev:bin": "nodemon ./bin/index.js dev  -p 8081 ./example/project/"
   },
   "author": "",
   "license": "ISC",

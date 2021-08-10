@@ -14,20 +14,17 @@ export interface TypeShowServer {
 export type TypeServerRequest = Koa.Request;
 
 export type TypeServerOpts = {
-  dev?: boolean,
+  dev?: boolean, // TODO
   port: number;
-  Show?: {
-    distDir: string;
-    srcDir?: string;
-  }
-  nextConfig?: any;
-  apiHandler?: (request: TypeServerRequest) => Promise<TypeShowServerAPIResult>
+  binModuleDir: string,
+  projectDir: string,
+  // apiHandler?: (request: TypeServerRequest) => Promise<TypeShowServerAPIResult>
 }
 
 
-export type TypeShowServerAPIResult = {
-  success: boolean;
-  code: string;
-  data: any;
-  message: string;
-}
+// export type TypeShowServerAPIResult = {
+//   success: boolean;
+//   code: string;
+//   data: any;
+//   message: string;
+// }
