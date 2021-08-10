@@ -1,5 +1,6 @@
 import process from 'process';
-import { program } from 'commander'
+import { program } from 'commander';
+import { startServer } from './lib/run';
 
 // program.version(version, '-v, --version')
 
@@ -8,15 +9,20 @@ program
   .command('dev [projectDir]')
   .option('-p, --port <number>', 'dev server port')
   .action((entry, cmd) => {
-    console.log('dev: process.cwd() =', process.cwd())
+    // console.log('dev: process.cwd() =', process.cwd())
+    const port = cmd.port || '8080';
+    startServer({
+      port: parseInt(port),
+    });
   })
       
 program
   .command('build [projectDir]')
   .action((entry, cmd) => {
-    // TODO
-    console.log('build ========', entry, cmd.port);
-    // runBuildTheme(entry);
+    const port = cmd.port
+    startServer({
+      port: parseInt(port),
+    });
   })
 
 program
