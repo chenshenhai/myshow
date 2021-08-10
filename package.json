@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "npm run dev:build-deps && npm run dev:src",
     "dev:src": "webpack serve -c ./scripts/dev.js",

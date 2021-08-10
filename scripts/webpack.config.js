@@ -9,7 +9,7 @@ const fileResolve = function (file) {
 module.exports = {
  
   entry: {
-    'myshow' : fileResolve('src/myshow.ts'),
+    'myshow' : fileResolve('src/myshow/index.ts'),
   },
  
   output: {
