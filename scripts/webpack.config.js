@@ -1,8 +1,5 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
-const buildConfig = require('./build-config');
-const { createWebpackConfig } = require('./common');
+const { createWebpackConfig, createWebpackNodeConfig } = require('./common');
 
 const fileResolve = function (file) {
   return path.join(__dirname, '..', file);
@@ -22,7 +19,7 @@ module.exports = [
       },
     },
   }),
-  createWebpackConfig({
+  createWebpackNodeConfig({
     entry: {
       'bin' : fileResolve('src/bin/index.ts'),
     },
@@ -30,7 +27,7 @@ module.exports = [
       path: fileResolve(''),
       filename: 'dist/[name].js',
       library: {
-        type: 'commonjs'
+        type: 'commonjs-module'
       },
     },
   })

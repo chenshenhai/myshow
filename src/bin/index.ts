@@ -1,5 +1,31 @@
-import process from 'process'
+import process from 'process';
+import { program } from 'commander'
 
-console.log('Hello')
+// program.version(version, '-v, --version')
 
-console.log('args = ', process.argv);
+
+program
+  .command('dev [projectDir]')
+  .option('-p, --port <number>', 'dev server port')
+  .action((entry, cmd) => {
+    console.log('dev: process.cwd() =', process.cwd())
+  })
+      
+program
+  .command('build [projectDir]')
+  .action((entry, cmd) => {
+    // TODO
+    console.log('build ========', entry, cmd.port);
+    // runBuildTheme(entry);
+  })
+
+program
+  .command('serve [projectDir]')
+  .option('-p, --port <number>', 'dev server port')
+  .action((entry, cmd) => {
+    console.log('serve ========', entry, cmd.port);
+    // runServer();
+  })
+
+
+program.parse(process.argv);

@@ -7,6 +7,7 @@ module.exports = [
   ...config.map((conf) => {
     return merge(conf, {
       mode: 'development',
+      devtool: 'inline-cheap-source-map',
     })
   })
 ]

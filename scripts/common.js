@@ -1,11 +1,13 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+const nodeExternals = require('webpack-node-externals');
 const { merge } = require('webpack-merge');
 const buildConfig = require('./build-config');
 
 module.exports = {
-  createWebpackConfig
+  createWebpackConfig,
+  createWebpackNodeConfig,
 }
 
 const fileResolve = function (file) {
@@ -17,21 +19,11 @@ function createWebpackConfig(config) {
   return merge(baseConfig, config);
 }
 
+function createWebpackNodeConfig(config) {
+  return merge(nodeConfig, config);
+}
+
 const baseConfig = {
- 
-  entry: {
-    // 'myshow' : fileResolve('src/myshow/index.ts'),
-    // 'bin' : fileResolve('src/bin/index.ts'),
-  },
- 
-  output: {
-    // path: fileResolve(''),
-    // filename: 'dist/[name].js',
-    // library: {
-    //   name: 'MyShow',
-    //   type: 'umd'
-    // },
-  },
   module: { 
     rules: [ 
       {
@@ -70,6 +62,28 @@ const baseConfig = {
     new MiniCssExtractPlugin({
       filename: 'dist/[name].css'
     }),
+    new NodePolyfillPlugin(),
+  ],
+}
+
+
+
+const nodeConfig = {
+ 
+  module: { 
+    rules: [ 
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ]
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
+  externals: nodeExternals(),
+  plugins: [
     new NodePolyfillPlugin(),
   ],
 }
