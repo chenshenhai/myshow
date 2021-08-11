@@ -123,7 +123,7 @@ function getEditorHTML(mode: 'dev' | 'prod') {
     <link rel="stylesheet" href="./public/page/editor.css" />
   </head>
   <body>
-    <div id="app">Loading...</div>
+    <div id="page">Loading...</div>
   </body>
   ${staticScriptList.map((s) => {
     return `<script src="./${s[mode]}"></script>`;

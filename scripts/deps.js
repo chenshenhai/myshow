@@ -50,6 +50,7 @@ const deps = [
 ]
 
 function main() {
+  // const mode = 'dev';
   const mode = 'prod';
   deps.forEach((mod) => {
     const textPath = path.join(nodeDir, mod.file[mode]);
