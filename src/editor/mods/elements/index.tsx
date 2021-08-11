@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { List } from 'antd';
-import { StudioContext } from '../../context';
+import { EditorContext } from '../../context';
 import { Item } from './item';
 
 const { useContext } = React;
@@ -11,7 +11,7 @@ type TypeProps = {
 
 export const Elements = (props: TypeProps) => {
 
-  const context = useContext(StudioContext);
+  const context = useContext(EditorContext);
   const { data } = context;
   const style: React.HTMLAttributes<HTMLDivElement>['style'] = {};
   if (props.maxHeight !== undefined && props.maxHeight > 0) {

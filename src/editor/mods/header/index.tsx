@@ -53,7 +53,7 @@ function getZoomOutValue(value: any): number | null {
   return val;
 }
 
-export function StudioHeader(props: TypeProps) {
+export function EditorHeader(props: TypeProps) {
 
   const [scale, setScale] = useState<number>(1);
   const [ableUndo, setAbleUndo] = useState<boolean>(true);

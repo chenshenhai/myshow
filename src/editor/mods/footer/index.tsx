@@ -7,7 +7,7 @@ type TypeProps = {
   height: number;
 }
 
-export function StudioFooter(props: TypeProps) {
+export function EditorFooter(props: TypeProps) {
 
   return (
     <Footer className="myshow-editor-footer" style={{height: props.height}}>

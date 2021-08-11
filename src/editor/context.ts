@@ -6,7 +6,7 @@ type TypeContext = {
   selectedElementUUID: string | null,
 };
 
-export const StudioContext = createContext<TypeContext>({
+export const EditorContext = createContext<TypeContext>({
   data: { elements: [] },
   selectedElementUUID: null,
 });

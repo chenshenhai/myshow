@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Layout } from 'antd';
 import { TypeData } from '@idraw/types';
-import { StudioHeader } from './mods/header';
-import { StudioFooter } from './mods/footer';
+import { EditorHeader } from './mods/header';
+import { EditorFooter } from './mods/footer';
 import { SiderLeft, SiderLeftBtn } from './mods/sider-left';
 import { SiderRight, SiderRightBtn } from './mods/sider-right';
-import StudioContent from './mods/content';
+import EditorContent from './mods/content';
 import { layoutConfig } from './layout';
 import eventHub from './util/event-hub';
-import { StudioContext } from './context';
+import { EditorContext } from './context';
 
 const { useState, useEffect } = React;
 
@@ -21,7 +21,7 @@ type TypeProps = {
   data?: TypeData;
 }
 
-function Studio(p: TypeProps) {
+function Editor(p: TypeProps) {
 
   const props = createProps(p);
   const contentSize = createContentSize(props);
@@ -57,7 +57,7 @@ function Studio(p: TypeProps) {
   }, [closeSiderLeft,  closeSiderRight]);
 
   return (
-    <StudioContext.Provider value={{
+    <EditorContext.Provider value={{
       data,
       selectedElementUUID,
     }}>
@@ -65,13 +65,13 @@ function Studio(p: TypeProps) {
         style={createStyle(props)}
       >
         <Layout style={{height: '100%'}}>
-          <StudioHeader height={layoutConfig.header.height} />
+          <EditorHeader height={layoutConfig.header.height} />
           <Layout style={{position: 'relative'}}>
             <SiderLeft
               width={closeSiderLeft ? 0 : layoutConfig.siderLeft.width}
               // height={contentSize.height}
             />
-            <StudioContent
+            <EditorContent
               width={contentWidth}
               height={contentSize.height}
               contextWidth={contentSize.contextWidth}
@@ -88,10 +88,10 @@ function Studio(p: TypeProps) {
               <SiderRightBtn style={{position: 'absolute', right: 10, top: 10, zIndex: 1,}} />
             )}
           </Layout>
-          <StudioFooter height={layoutConfig.footer.height}/>
+          <EditorFooter height={layoutConfig.footer.height}/>
         </Layout>
       </div>
-    </StudioContext.Provider>
+    </EditorContext.Provider>
   )
 }
 
@@ -148,4 +148,4 @@ function calcContentWidth(
   return contentWidth;
 }
 
-export default Studio
+export default Editor

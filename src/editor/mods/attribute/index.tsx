@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StudioContext } from '../../context';
+import { EditorContext } from '../../context';
 import { Form, Input, Col, Row, } from 'antd';
 import { getElement, checkElementAttrs } from '../../util/data';
 import eventHub from '../../util/event-hub';
@@ -12,7 +12,7 @@ type TypeProps = {
 }
 
 export const Attribute = (props: TypeProps) => {
-  const context = useContext(StudioContext);
+  const context = useContext(EditorContext);
   const { data, selectedElementUUID } = context;
   const elem = getElement(data, selectedElementUUID);
   const style: React.HTMLAttributes<HTMLDivElement>['style'] = {};

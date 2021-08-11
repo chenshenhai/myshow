@@ -5,7 +5,7 @@ import IDraw from 'idraw';
 import { Layout } from 'antd'; 
 import eventHub from '../../util/event-hub';
 // import ScrollBox from './scroll-box';
-import { StudioContext } from '../../context';
+import { EditorContext } from '../../context';
 import { onDragOver } from '../global';
 
 const { Content } = Layout;
@@ -17,8 +17,8 @@ type TypeProps = {
   contextHeight: number;
 }
 
-function StudioContent(props: TypeProps) {
-  const context = useContext(StudioContext);
+function EditorContent(props: TypeProps) {
+  const context = useContext(EditorContext);
   const { data } = context;
   const { width, height } = props;
   const mount = useRef(null); 
@@ -130,4 +130,4 @@ function StudioContent(props: TypeProps) {
 }
 
 
-export default StudioContent
+export default EditorContent

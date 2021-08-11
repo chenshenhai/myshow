@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TypeElemDesc, TypeElement } from '@idraw/types';
-import { StudioContext } from '../../context';
+import { EditorContext } from '../../context';
 import { getElement } from '../../util/data';
 import eventHub from '../../util/event-hub';
 import { RectDescForm } from './rect';
@@ -17,7 +17,7 @@ type TypeProps = {
 }
 
 export const Description = (props: TypeProps) => {
-  const context = useContext(StudioContext);
+  const context = useContext(EditorContext);
   const { data, selectedElementUUID } = context;
   const elem: TypeElement<keyof TypeElemDesc> = getElement(data, selectedElementUUID);
   

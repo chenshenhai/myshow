@@ -7,7 +7,7 @@ import {
 } from '@ant-design/icons';
 import classnames from 'classnames';
 import eventHub from '../../util/event-hub';
-import { StudioContext } from '../../context';
+import { EditorContext } from '../../context';
 
 const { useContext, useState, useCallback } = React;
 
@@ -18,7 +18,7 @@ type TypeProps = {
 
 export const Item = (props: TypeProps) => {
   const { element } = props;
-  const context = useContext(StudioContext);
+  const context = useContext(EditorContext);
   const { selectedElementUUID } = context;
   const style: React.HTMLAttributes<HTMLDivElement>['style'] = {};
   if (props.maxHeight > 0) {

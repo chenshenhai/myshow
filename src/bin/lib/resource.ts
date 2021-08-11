@@ -86,7 +86,7 @@ export function createStaticResource(opts: {
   fs.writeFileSync(indexPageTargetPath, getIndexHTML(mode));
 
   const eidtorPageTargetPath = path.join(targetDir, 'editor.html');
-  fs.writeFileSync(eidtorPageTargetPath, getIndexHTML(mode));
+  fs.writeFileSync(eidtorPageTargetPath, getEditorHTML(mode));
 }
 
 
@@ -101,7 +101,7 @@ function getIndexHTML(mode: 'dev' | 'prod') {
     <link rel="stylesheet" href="./public/page/index.css" />
   </head>
   <body>
-    <div id="app">Loading...</div>
+    <div id="page">Loading...</div>
   </body>
   ${staticScriptList.map((s) => {
     return `<script src="./${s[mode]}"></script>`;
@@ -112,7 +112,7 @@ function getIndexHTML(mode: 'dev' | 'prod') {
   return html;
 }
 
-function getIndexEditorHTML(mode: 'dev' | 'prod') {
+function getEditorHTML(mode: 'dev' | 'prod') {
   const html = `<!DOCTYPE html>
 <html>
   <head>
@@ -120,7 +120,7 @@ function getIndexEditorHTML(mode: 'dev' | 'prod') {
     ${staticCSSList.map((c) => {
       return `<link rel="stylesheet" href="./${c[mode]}" />`;
     }).join('\r\n')}
-    <link rel="stylesheet" href="./public/page/index.css" />
+    <link rel="stylesheet" href="./public/page/editor.css" />
   </head>
   <body>
     <div id="app">Loading...</div>
@@ -128,7 +128,7 @@ function getIndexEditorHTML(mode: 'dev' | 'prod') {
   ${staticScriptList.map((s) => {
     return `<script src="./${s[mode]}"></script>`;
   }).join('\r\n')}
-  <script src="./public/page/index.js"></script>
+  <script src="./public/page/editor.js"></script>
 </html>
 `;
   return html;

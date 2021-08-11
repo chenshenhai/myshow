@@ -1,8 +1,8 @@
 module.exports = {
   deps: {
-    'react': 'react',
-    'react-dom': 'reactDOM',
-    'antd': 'antd',
-    'idraw': 'iDraw',
+    'react': 'window.React',
+    'react-dom': 'window.ReactDOM',
+    'antd': 'window.antd',
+    'idraw': 'window.iDraw',
   }
 }
