@@ -1,4 +1,5 @@
 import path from 'path';
+import fs from 'fs';
 import { Server } from 'net';
 import Koa from 'koa';
 import Router from '@koa/router';
@@ -60,15 +61,18 @@ export class ShowServer implements TypeShowServer {
     const { projectDir, binModuleDir } = this._opts;
     const server = this._serverApp;
     // const apiHandler = this._opts.apiHandler;
+    const distDir = path.join(projectDir, 'dist');
 
     return new Promise((resolve) => {
       const router = new Router();
 
-      server.use(KoaStatic(path.join()))
+      server.use(KoaStatic(path.join(distDir)))
 
-      router.get('/', async (ctx, next) => {
-        ctx.body = '<h1>Server!</h1>';
-      })
+      // router.get('*', async (ctx, next) => {
+      //   const htmlPath = path.join(distDir, 'index.html');
+      //   const html = fs.readFileSync(htmlPath);
+      //   ctx.body = html;
+      // })
       
       // router.get('/api/(.*)', async (ctx: Koa.Context, next: Koa.Next) => {
       //   if (typeof apiHandler === 'function') {

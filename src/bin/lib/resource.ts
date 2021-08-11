@@ -29,7 +29,7 @@ const staticScriptList: {
     prod: 'public/deps/antd.min.js',
   },
   {
-    dev: 'public/iDraw.js',
+    dev: 'public/deps/iDraw.js',
     prod: 'public/deps/iDraw.min.js',
   },
 ]
@@ -77,7 +77,7 @@ function getIndexHTML(mode: 'dev' | 'prod') {
     }).join('\r\n')}
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">Loading...</div>
   </body>
   ${staticScriptList.map((s) => {
     return `<script src="./${s[mode]}"></script>`;

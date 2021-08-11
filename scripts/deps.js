@@ -2,12 +2,14 @@ const path = require('path');
 const { merge } = require('webpack-merge'); 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const buildConfig = require('./build-config');
-const { createWebpackConfig } = require('./common');
+const { removeFullDir } = require('./util/file');
+
 
 const fileResolve = function (file) {
   return path.join(__dirname, '..', file);
 };
 
+removeFullDir(fileResolve('dist'))
 
 module.exports = {
   mode: 'development',
