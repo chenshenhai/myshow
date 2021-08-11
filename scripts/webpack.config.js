@@ -19,6 +19,16 @@ module.exports = [
       },
     },
   }),
+  createWebpackConfig({
+    entry: {
+      'index' : fileResolve('src/page/index.tsx'),
+      'editor' : fileResolve('src/page/editor.tsx'),
+    },
+    output: {
+      path: fileResolve(''),
+      filename: 'dist/page/[name].js',
+    },
+  }),
   createWebpackNodeConfig({
     entry: {
       'bin' : fileResolve('src/bin/index.ts'),
