@@ -17,20 +17,20 @@ const staticScriptList: {
   prod: string
 }[] = [
   {
-    dev: 'public/deps/React.js',
-    prod: 'public/deps/React.min.js',
+    dev: 'public/deps/react.js',
+    prod: 'public/deps/react.js',
   },
   {
-    dev: 'public/deps/ReactDOM.js',
-    prod: 'public/deps/ReactDOM.min.js',
+    dev: 'public/deps/react-dom.js',
+    prod: 'public/deps/react-dom.js',
   },
   {
     dev: 'public/deps/antd.js',
-    prod: 'public/deps/antd.min.js',
+    prod: 'public/deps/antd.js',
   },
   {
-    dev: 'public/deps/iDraw.js',
-    prod: 'public/deps/iDraw.min.js',
+    dev: 'public/deps/idraw.js',
+    prod: 'public/deps/idraw.js',
   },
 ]
 
@@ -71,7 +71,6 @@ function getIndexHTML(mode: 'dev' | 'prod') {
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./index.css" />
     ${staticCSSList.map((c) => {
       return `<link rel="stylesheet" href="./${c[mode]}" />`;
     }).join('\r\n')}

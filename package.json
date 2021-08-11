@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "npm run dev:build-deps && npm run dev:src",
     "dev:src": "webpack --watch -c ./scripts/dev.js",
-    "dev:build-deps": "webpack -c ./scripts/deps.js",
+    "dev:build-deps": "node ./scripts/deps.js",
     "build": "webpack -c ./scripts/build.js",
     "dev:bin": "nodemon ./bin/index.js dev  -p 8081 ./example/project/"
   },
