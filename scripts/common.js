@@ -57,12 +57,6 @@ const baseConfig = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   externals: buildConfig.deps,
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'dist/[name].css'
-    }),
-    new NodePolyfillPlugin(),
-  ],
 }
 
 

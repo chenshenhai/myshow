@@ -1,4 +1,5 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { createWebpackConfig, createWebpackNodeConfig } = require('./common');
 
 const fileResolve = function (file) {
@@ -18,16 +19,26 @@ module.exports = [
         type: 'umd'
       },
     },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: 'dist/[name].css'
+      }),
+    ],
   }),
   createWebpackConfig({
     entry: {
-      'index' : fileResolve('src/page/index.tsx'),
-      'editor' : fileResolve('src/page/editor.tsx'),
+      'index' : fileResolve('src/page/index/index.tsx'),
+      'editor' : fileResolve('src/page/editor/index.tsx'),
     },
     output: {
       path: fileResolve(''),
-      filename: 'dist/page/[name].js',
+      filename: 'dist/public/page/[name].js',
     },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: 'dist/public/page/[name].css'
+      }),
+    ],
   }),
   createWebpackNodeConfig({
     entry: {
