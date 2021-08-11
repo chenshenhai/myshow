@@ -8,7 +8,7 @@ import { _opts, _showData, _mount, _hasInited, _idraw, _renderer,
   _player, _bindEvent, _tempData,} from './names';
 
 
-export class MyShow {
+export default class MyShow {
   private [_showData]: TypeShowData;
   private [_opts]: TypeMyShowOptions;
   private [_mount]: HTMLDivElement;

@@ -50,18 +50,17 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
-    "@idraw/types": "0.1.3",
-    "@idraw/util": "0.1.3",
+    "@idraw/types": "0.1.4",
+    "@idraw/util": "0.1.4",
     "@koa/router": "^10.1.0",
     "antd": "^4.16.10",
     "commander": "^8.1.0",
-    "idraw": "0.1.3",
+    "idraw": "0.1.4",
     "koa": "^2.13.1",
     "koa-static": "^5.0.0",
     "react": "^17.0.2",
     "react-color": "^2.19.3",
     "react-dom": "^17.0.2",
-    "requirejs": "^2.3.6",
     "vue": "^3.1.1"
   },
   "browser": {
