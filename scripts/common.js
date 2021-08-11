@@ -14,7 +14,6 @@ const fileResolve = function (file) {
   return path.join(__dirname, '..', file);
 };
 
-
 function createWebpackConfig(config) {
   return merge(baseConfig, config);
 }
@@ -82,8 +81,8 @@ const nodeConfig = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
-  externals: nodeExternals(),
+  externals: [nodeExternals(), { fs: 'fs', path: 'path' }],
   plugins: [
-    new NodePolyfillPlugin(),
+    // new NodePolyfillPlugin(),
   ],
 }

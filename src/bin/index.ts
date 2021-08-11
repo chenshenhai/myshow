@@ -1,7 +1,7 @@
 import path from 'path';
 import process from 'process';
 import { program } from 'commander';
-import { startServer } from './lib/run';
+import { startServer, runDev } from './lib/run';
 
 // program.version(version, '-v, --version')
 
@@ -14,7 +14,7 @@ program
     const port = cmd.port || '8080';
     const projectDir = path.join(process.cwd(), entry || '');
     const binModuleDir = path.join(process.cwd());
-    startServer({
+    runDev({
       port: parseInt(port),
       binModuleDir: binModuleDir,
       projectDir: projectDir,
