@@ -24,7 +24,6 @@ export type TypeShowLayout = {
 export type TypeShowSlide = {
   name: string,
   content: TypeShowContent,
-  children?: TypeShowSlide[]
   inlineLayout?: {
     slots: TypeShowSlot[]
   }

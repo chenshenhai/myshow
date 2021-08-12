@@ -1,6 +1,6 @@
 import iDraw from 'idraw';
 import util from '@idraw/util';
-import { TypeShowData, TypeShowLayout, TypeShowSlide } from './../types/index';
+import { TypeShowData, TypeShowLayout, TypeShowSlide } from '../../types/index';
 import { TypeDataBase, TypeData, TypeElemType } from '@idraw/types';
 
 type Options = {

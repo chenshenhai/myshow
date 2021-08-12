@@ -1,7 +1,7 @@
 import iDraw from 'idraw';
 import util from '@idraw/util';
 import { TypeDataBase, TypeElemType } from '@idraw/types';
-import { TypeShowData, TypeShowLayout } from './../types/index';
+import { TypeShowData, TypeShowLayout } from '../../types/index';
 import { createAnimationAction } from './../util/animate';
 
 type Options = {

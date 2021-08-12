@@ -1,7 +1,7 @@
 import iDraw from 'idraw';
 import { TypeElement, TypeElemDesc } from '@idraw/types';
 import Renderer from './lib/renderer';
-import { TypeMyShowOptions, TypeShowData, TypeShowLayout } from './types/index';
+import { TypeMyShowOptions, TypeShowData, TypeShowLayout } from '../types/index';
 import Player from './lib/player';
 import { TempData } from './lib/temp';
 import { _opts, _showData, _mount, _hasInited, _idraw, _renderer,
