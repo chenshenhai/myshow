@@ -18,7 +18,7 @@ export const TextDescForm: React.FC<DescFormProps> = ({ onChange, elem }) => {
 
   const fields = [
     { name: ['text'], value: elem.desc.text || '' },
-    { name: ['color'], value: elem.desc.color || '' },
+    { name: ['bgColor'], value: elem.desc.bgColor || '' },
     { name: ['fontSize'], value: elem.desc.fontSize || 12 },
     { name: ['fontFamily'], value: elem.desc.fontFamily || 'sans-serif' },
     { name: ['textAlign'], value: elem.desc.textAlign || 'center' },

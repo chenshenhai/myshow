@@ -15,8 +15,8 @@
     "build": "webpack -c ./scripts/build.js",
     "dev:bin": "nodemon ./bin/index.js dev  -p 8081 ./example/project/"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "chenshenhai",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.5",
@@ -28,8 +28,6 @@
     "@types/react": "^17.0.17",
     "@types/react-color": "^3.0.5",
     "@types/react-dom": "^17.0.9",
-    "@vue/babel-plugin-jsx": "^1.0.6",
-    "@vue/compiler-sfc": "^3.1.1",
     "@webpack-cli/serve": "^1.5.1",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.6",
@@ -50,18 +48,17 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
-    "@idraw/types": "0.1.4",
-    "@idraw/util": "0.1.4",
+    "@idraw/types": "0.2.0-alpha.25",
+    "@idraw/util": "0.2.0-alpha.25",
     "@koa/router": "^10.1.0",
     "antd": "^4.16.10",
     "commander": "^8.1.0",
-    "idraw": "0.1.4",
+    "idraw": "0.2.0-alpha.25",
     "koa": "^2.13.1",
     "koa-static": "^5.0.0",
     "react": "^17.0.2",
     "react-color": "^2.19.3",
-    "react-dom": "^17.0.2",
-    "vue": "^3.1.1"
+    "react-dom": "^17.0.2"
   },
   "browser": {
     "fs": false,

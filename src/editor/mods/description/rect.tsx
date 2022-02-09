@@ -17,7 +17,7 @@ export const RectDescForm: React.FC<DescFormProps> = ({ onChange, elem }) => {
     { name: ['borderWidth'], value: elem.desc.borderWidth || 0 },
     { name: ['borderRadius'], value: elem.desc.borderRadius || 0 },
     { name: ['borderColor'], value: elem.desc.borderColor || '' },
-    { name: ['color'], value: elem.desc.color || '' },
+    { name: ['bgColor'], value: elem.desc.bgColor || '' },
   ];
 
   return (<Form

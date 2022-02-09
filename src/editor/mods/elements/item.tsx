@@ -44,7 +44,7 @@ export const Item = (props: TypeProps) => {
   }, [elemName, element]);
 
   const onClickSwitchLock = useCallback(() => {
-    element.lock = !element.lock;
+    element.operation.lock = !element.operation.lock;
     eventHub.trigger('editorUpdateElement', element);
     setIsEdit(false);
   }, [element]);
@@ -87,7 +87,7 @@ export const Item = (props: TypeProps) => {
           />
         )}
 
-        {element.lock === true ? (
+        {element.operation.lock === true ? (
           <LockFilled
             className="myshow-editor-element-icon icon-active"
             onClick={onClickSwitchLock} />

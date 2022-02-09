@@ -83,6 +83,7 @@ class Renderer {
           textAlign: 'center',
         },
       };
+      // @ts-ignore
       idrawData.elements.push(elem);
       elemForSlideMap[uuid] = {
         index: i,
