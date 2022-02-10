@@ -2,6 +2,7 @@ const path = require('path');
 const { createServer, defineConfig } = require('vite');
 const open = require('open');
 const reactRefresh = require('@vitejs/plugin-react-refresh');
+const { lessOptions } = require('./config');
 
 dev();
 
@@ -31,12 +32,7 @@ function getViteConfig() {
     plugins: [reactRefresh()],
     css: {
       preprocessorOptions: {
-        less: {
-          javascriptEnabled: true,
-          modifyVars: {
-            // 'ant-prefix': 'myshow-ui'
-          },
-        }
+        less: lessOptions
       }
     },
     esbuild: {
