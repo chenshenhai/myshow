@@ -29,6 +29,16 @@ function getViteConfig() {
       host: '127.0.0.1',
     },
     plugins: [reactRefresh()],
+    css: {
+      preprocessorOptions: {
+        less: {
+          javascriptEnabled: true,
+          modifyVars: {
+            // 'ant-prefix': 'myshow-ui'
+          },
+        }
+      }
+    },
     esbuild: {
       include: [
         /\.ts$/,

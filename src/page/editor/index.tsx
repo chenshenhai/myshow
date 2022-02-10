@@ -13,7 +13,7 @@ ReactDOM.render(
     contextWidth={1600}
     contextHeight={1200}
   />),
-  document.querySelector('#page'),
+  document.querySelector('#app'),
 )
 
 
